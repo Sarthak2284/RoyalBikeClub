@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #e2e2e2, #ffffff);
+            font-family: 'Arial', sans-serif;
+        }
+        .card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .hero-section {
+            background: #0d6efd;
+            color: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .hero-title {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .hero-text {
+            font-size: 1.2rem;
+        }
+        .form-section {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Hero Section -->
+        <div class="hero-section text-center mb-4">
+            <h1 class="hero-title">Secure Your Rental Today!</h1>
+            <p class="hero-text">Complete your payment to enjoy your rental bike. Ensure all details are correct before proceeding.</p>
+        </div>
+
+        <!-- Rental Details Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title mb-0">Rental Payment Details</h3>
+            </div>
+            <div class="card-body form-section">
+                <p class="card-text mb-3"><strong>Bike Model:</strong> <%= bike.name %></p>
+                <p class="card-text mb-3"><strong>Number of Days:</strong> <%= numberOfDays %></p>
+                <p class="card-text mb-4"><strong>Total Payment:</strong> ₹<%= totalPayment %></p>
+
+                <!-- Payment Form -->
+                <form action="/complete-rent" method="POST">
+                    <div class="mb-3">
+                        <label for="cardName" class="form-label">Name on Card</label>
+                        <input type="text" id="cardName" name="cardName" required
+                               class="form-control" placeholder="John Doe">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cardNumber" class="form-label">Card Number</label>
+                        <input type="text" id="cardNumber" name="cardNumber" required maxlength="19"
+                               class="form-control" placeholder="1234 5678 9123 4567">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="expiryDate" class="form-label">Expiration Date</label>
+                        <div class="d-flex">
+                            <input type="text" id="expiryMonth" name="expiryMonth" required maxlength="2"
+                                   class="form-control me-2" placeholder="MM">
+                            <input type="text" id="expiryYear" name="expiryYear" required maxlength="2"
+                                   class="form-control" placeholder="YY">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="text" id="cvv" name="cvv" required maxlength="3"
+                               class="form-control" placeholder="123">
+                    </div>
+
+                    <!-- Hidden Inputs -->
+                    <input type="hidden" name="bikeId" value="<%= bike._id %>">
+                    <input type="hidden" name="numberOfDays" value="<%= numberOfDays %>">
+                    <input type="hidden" name="totalPayment" value="<%= totalPayment %>">
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary w-100">Complete Rental</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

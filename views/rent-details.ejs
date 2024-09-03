@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Details - Rent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .card-img-top {
+            max-height: 400px;
+            object-fit: cover;
+        }
+        .card {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .btn-primary {
+            background-color: #f8b400;
+            border-color: #f8b400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <img src="<%= bike.image %>" class="card-img-top" alt="<%= bike.name %>">
+            <div class="card-body">
+                <h3 class="card-title"><%= bike.name %></h3>
+                <p class="card-text">Price: ₹<%= bike.rentalPrice %> per day</p>
+                <p class="card-text">Category: <%= bike.category %></p>
+                <p class="card-text"><%= bike.description %></p>
+                
+                <!-- Rental Form -->
+                <form action="/rent-now/<%= bike._id %>/checkout" method="POST">
+                    <div class="mb-3">
+                        <label for="days" class="form-label">Number of Days</label>
+                        <input type="number" class="form-control" id="days" name="days" min="1" value="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="totalPrice" class="form-label">Total Rental Price</label>
+                        <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="<%= bike.rentalPrice %>" readonly>
+                    </div>
+                    <input type="hidden" name="bikeId" value="<%= bike._id %>">
+                    <button type="submit" class="btn btn-primary">Proceed to Rent</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('days').addEventListener('input', function() {
+            const days = parseInt(this.value) || 1;
+            const rentalPricePerDay = <%= bike.rentalPrice %>;
+            const totalPrice = rentalPricePerDay * days;
+            document.getElementById('totalPrice').value = `₹${totalPrice}`;
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Royal Bike Club</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://images.unsplash.com/photo-1558980664-2506fca6bfc2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .welcome-container {
+            max-width: 600px;
+            margin: 100px auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+        }
+        .welcome-container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .welcome-container p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .btn-custom {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Hi <%= name %>, Welcome to the CLUB!!!</h1>
+        <p>Discover our exclusive range of bikes and enjoy our top-notch rental services. We're thrilled to have you with us!</p>
+        <div>
+            <a href="/shop" class="btn btn-primary btn-custom">Buy a Bike</a>
+            <a href="/rent" class="btn btn-secondary btn-custom">Rent a Bike</a>
+            <a href="/my-transactions" class="btn btn-outline-light btn-custom">My Transactions</a>
+        </div>
+        <footer class="mt-4">
+            <p>&copy; <%= new Date().getFullYear() %> Royal Bike Club. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

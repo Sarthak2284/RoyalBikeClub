@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Your Purchase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            border: none;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card mx-auto shadow-sm" style="max-width: 600px;">
+            <div class="card-body text-center">
+                <h1 class="card-title text-success mb-4">Thank You for Your Purchase, <%= cardName %>!</h1>
+                <p class="card-text mb-4">Your purchase of <strong><%= bikeName %></strong> has been successfully completed.</p>
+                <div class="card bg-light mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Purchase Summary</h5>
+                        <p class="card-text"><strong>Bike Model:</strong> <%= bikeName %></p>
+                        <p class="card-text"><strong>Total Payment:</strong> $<%= bikePrice %></p>
+                    </div>
+                </div>
+                <a href="/shop" class="btn btn-primary">Go Back to Shop</a>
+                <a href="/logout" class="btn btn-secondary">Log Out</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

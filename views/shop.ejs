@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Royal Bike Club</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+        }
+        .card img {
+            max-height: 200px;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 15px;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .card:hover .card-info {
+            opacity: 1;
+            visibility: visible;
+        }
+        .card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .card-info h5, .card-info p {
+            margin: 0;
+        }
+        .card-info .btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-3">
+        <h1>Shop - Royal Bike Club</h1>
+    </header>
+    <div class="container mt-5">
+        <div class="row">
+            <% bikes.forEach(bike => { %>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="<%= bike.image %>" class="card-img-top" alt="<%= bike.name %>">
+                        <div class="card-info">
+                            <h5 class="card-title"><%= bike.name %></h5>
+                            <p class="card-text">Price: ₹<%= bike.price %></p>
+                            <p class="card-text">Category: <%= bike.category %></p>
+                            <p class="card-text"><%= bike.description %></p>
+                            <a href="/buy-now/<%= bike._id %>" class="btn btn-primary">Proceed to Pay</a>
+                        </div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <h5 class="card-title d-none d-md-block"><%= bike.name %></h5>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
